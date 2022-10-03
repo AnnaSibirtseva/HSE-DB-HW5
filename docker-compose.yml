@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:14.5
+    environment:
+      POSTGRES_DB: "sibirtseva_206"
+      POSTGRES_USER: "sibirtseva_206"
+      POSTGRES_PASSWORD: "sibirtseva_206"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ./docker/db/scripts/Hospital.sql:/docker-entrypoint-initdb.d/Hospital.sql
+      - ./docker/db/scripts/Library.sql:/docker-entrypoint-initdb.d/Library.sql
+      - ./docker/db/scripts/Trains.sql:/docker-entrypoint-initdb.d/Trains.sql
+      - ./dz:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
